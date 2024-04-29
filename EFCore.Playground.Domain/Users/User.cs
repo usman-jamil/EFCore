@@ -1,4 +1,6 @@
 ﻿using EFCore.Playground.Domain.Abstractions;
+using EFCore.Playground.Domain.Groups;
+using EFCore.Playground.Domain.Workspaces;
 
 namespace EFCore.Playground.Domain.Users;
 
@@ -23,6 +25,8 @@ public sealed class User : Entity
     public Email Email { get; private set; }
 
     public string IdentityId { get; private set; } = string.Empty;
+
+    public ICollection<Group> Groups { get; set; }
 
     public static User Create(FirstName firstName, LastName lastName, Email email)
     {

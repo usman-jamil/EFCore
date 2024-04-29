@@ -1,4 +1,5 @@
-﻿using EFCore.Playground.Domain.Users;
+﻿using EFCore.Playground.Domain.Shared;
+using EFCore.Playground.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -27,5 +28,9 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasIndex(user => user.Email).IsUnique();
 
         builder.HasIndex(user => user.IdentityId).IsUnique();
+
+        builder.HasMany(x => x.Groups)
+            .WithMany()
+            .UsingEntity(typeof(UserGroup));
     }
 }
